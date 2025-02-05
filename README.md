@@ -4,9 +4,18 @@
 
 SafeZone es una plataforma móvil y web diseñada para mejorar la seguridad en comunidades locales. Integra una red de alertas comunitarias, mapas colaborativos con zonas de riesgo, un botón de pánico virtual y talleres de prevención. El backend, desarrollado con Java y Spring Boot, gestiona la API REST para el manejo de reportes, usuarios y la integración con sistemas de seguridad pública.
 
+## Integrantes 
+- Nicolas Achuri
+- Tomás Suarez
+- Juliana Briceño
+- Erick Montero
+- Ricardo Villamizar
+- Cristian Alvarez
+
+
 ## Versión del Lenguaje
 
-- **Java:** 17
+- **Java:** 21
 - **Spring Boot:** 3.4.2
 
 ## Dependencias
@@ -21,7 +30,7 @@ SafeZone es una plataforma móvil y web diseñada para mejorar la seguridad en c
 
 ### Prerrequisitos
 
-- Java 17 o superior
+- Java 21
 - Maven 3.6 o superior
 
 ### Clonación del Repositorio
@@ -46,3 +55,28 @@ Una vez iniciada, la API estará disponible en:
 http://localhost:8080
 
 ```
+
+### Estructura
+La estructura del proyecto sigue el estándar de Maven, organizando el código fuente en el directorio src/main/java bajo el paquete eci.ieti.safezone, que contiene los módulos controller y exception, con las clases StatusController.java y GlobalExceptionHandler.java, respectivamente. Los recursos del proyecto se ubican en src/main/resources, mientras que las pruebas unitarias están en src/test/java/eci/ieti/demo. Además, el archivo pom.xml gestiona las dependencias y la configuración del proyecto.
+```bash
+src
+├── main
+│   ├── java
+│   │   └── eci
+│   │       └── ieti
+│   │           └── safezone
+│   │               ├── controller
+│   │               │   └── StatusController.java
+│   │               └── exception
+│   │                   └── GlobalExceptionHandler.java
+│   └── resources
+└── test
+    └── java
+        └── eci
+            └── ieti
+                └── demo
+pom.xml
+```
+### Planeación del Proyecto
+La planeación detallada del desarrollo del backend, incluyendo el backlog y las historias de usuario, está disponible en el siguiente enlace:  
+[Planeación del Backend](https://ejemplo.com/planeacion-backend](https://trello.com/invite/b/67a00fc8bcfff22002613396/ATTI91a97041797d4657dfbe6f8f4eafc4c6AB986C2F/safezone-3))
