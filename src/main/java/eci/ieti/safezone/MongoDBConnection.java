@@ -15,3 +15,4 @@ public class MongoDBConnection {
             System.out.println("Error conectando a MongoDB: " + e.getMessage());
         }
     }
+}
