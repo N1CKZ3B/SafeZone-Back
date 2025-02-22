@@ -1,4 +1,4 @@
-package eci.ieti.demo;
+package eci.ieti.safezone;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
