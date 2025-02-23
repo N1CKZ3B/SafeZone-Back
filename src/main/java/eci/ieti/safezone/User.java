@@ -1,12 +1,11 @@
 package eci.ieti.safezone;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 
-@Document(collection = "users") // Indica que esta clase representa la colección "users"
+@DynamoDbBean // Indica que esta clase representa una tabla en DynamoDB
 public class User {
 
-    @Id
     private String id;
     private String nombre;
     private String correo;
@@ -14,11 +13,13 @@ public class User {
     private String ciudad;
     private boolean postulado;
     private boolean elegido;
+    private String password;
 
-    // Constructor vacío (necesario para Spring)
+    // Constructor vacío (necesario para DynamoDB)
     public User() {}
 
     // Getters y Setters
+    @DynamoDbPartitionKey // Indica que 'id' es la clave primaria de la tabla
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
@@ -39,4 +40,7 @@ public class User {
 
     public boolean isElegido() { return elegido; }
     public void setElegido(boolean elegido) { this.elegido = elegido; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 }
