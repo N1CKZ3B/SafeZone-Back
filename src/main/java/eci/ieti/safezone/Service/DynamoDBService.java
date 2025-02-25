@@ -53,4 +53,39 @@ public class DynamoDBService {
     public Optional<User> findById(String id) {
         return Optional.ofNullable(userTable.getItem(r -> r.key(k -> k.partitionValue(id))));
     }
+
+    public List<User> findByPostulado(boolean isPostulado) {
+        System.out.println("Buscando usuarios con postulado: " + isPostulado);
+
+        // Crear un mapa con el valor de la expresión, usando BOOL en lugar de S
+        Map<String, AttributeValue> expressionValues = new HashMap<>();
+        expressionValues.put(":postulado", AttributeValue.builder().bool(isPostulado).build());
+
+        // Construir la expresión de filtro correctamente
+        Expression expression = Expression.builder()
+                .expression("postulado = :postulado")
+                .expressionValues(expressionValues)
+                .build();
+
+        // Construir la solicitud de escaneo con la expresión de filtro
+        ScanEnhancedRequest scanEnhancedRequest = ScanEnhancedRequest.builder()
+                .filterExpression(expression)
+                .build();
+
+        // Realizar el escaneo
+        List<User> results = userTable.scan(scanEnhancedRequest)
+                .items()
+                .stream()
+                .collect(Collectors.toList());
+
+        // Log de resultados obtenidos
+        System.out.println("Número de usuarios encontrados: " + results.size());
+        if (results.isEmpty()) {
+            System.out.println("No se encontraron usuarios. Verifica que el atributo 'postulado' realmente existe y tiene el valor esperado.");
+        } else {
+            results.forEach(user -> System.out.println("Usuario encontrado: " + user));
+        }
+
+        return results;
+    }
 }
