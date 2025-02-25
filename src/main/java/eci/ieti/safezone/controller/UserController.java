@@ -18,8 +18,8 @@ public class UserController {
 
     // GET: Obtener todos los usuarios postulados (postulado == true)
     @GetMapping("/postulados")
-    public List<User> getPostulados() {
-        return dynamoDBService.findByPostuladoTrue();
+    public List<User> findByPostulado() {
+        return dynamoDBService.findByPostulado(true);
     }
 
     // POST: Marcar a un usuario como elegido
