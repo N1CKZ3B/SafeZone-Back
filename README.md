@@ -1,8 +1,8 @@
-# SafeZone Backend
+# Solver Backend
 
 ## Descripción del Proyecto
 
-SafeZone es una plataforma móvil y web diseñada para mejorar la seguridad en comunidades locales. Integra una red de alertas comunitarias, mapas colaborativos con zonas de riesgo, un botón de pánico virtual y talleres de prevención. El backend, desarrollado con Java y Spring Boot, gestiona la API REST para el manejo de reportes, usuarios y la integración con sistemas de seguridad pública.
+Solver consiste en el desarrollo de una aplicación digital que conecta a personas que ofrecen servicios básicos con quienes los necesitan de manera rápida, sencilla y segura. La plataforma facilita la contratación de trabajadores independientes para tareas cotidianas, promoviendo la economía local y brindando oportunidades de ingresos sin necesidad de empleos formales.
 
 ## Integrantes 
 - Nicolas Achuri
@@ -13,18 +13,41 @@ SafeZone es una plataforma móvil y web diseñada para mejorar la seguridad en c
 - Cristian Alvarez
 
 
-## Versión del Lenguaje
+### Versiones
+- **Java**: `21`
+- **Maven**: `4.0.0`
 
-- **Java:** 21
-- **Spring Boot:** 3.4.2
+### Dependencias principales
 
-## Dependencias
+#### Spring Boot Starter Dependencies
+- `spring-boot-starter-data-jpa`: Para integración con JPA (Java Persistence API).
+- `spring-boot-starter-web`: Para construir aplicaciones web con Spring MVC.
+- `spring-boot-starter-test`: Para pruebas en aplicaciones Spring Boot.
+- `spring-boot-starter-data-mongodb`: Para integración con MongoDB.
 
-- **Spring Boot Starter Data JPA:** Para la gestión de datos con JPA.
-- **Spring Boot Starter Web:** Para la creación de servicios RESTful.
-- **H2 Database:** Base de datos en memoria para pruebas.
-- **Lombok:** Para simplificar el código Java mediante anotaciones.
-- **Spring Boot Starter Test:** Para pruebas unitarias y de integración.
+#### Bases de datos y drivers
+- `h2`: Base de datos en memoria para desarrollo y pruebas.
+- `mongodb-driver-sync`: Driver de MongoDB para operaciones síncronas.
+
+#### Lombok
+- `lombok`: Para reducir el código boilerplate (getters, setters, constructores, etc.).
+
+#### AWS SDK
+- `aws-java-sdk-dynamodb`: SDK de AWS para DynamoDB (versión 1.x).
+- `aws-java-sdk-s3`: SDK de AWS para S3 (versión 1.x).
+- `dynamodb` y `dynamodb-enhanced`: SDK de AWS para DynamoDB (versión 2.x).
+
+#### Documentación API
+- `springdoc-openapi-starter-webmvc-ui`: Para generar documentación de API con OpenAPI (Swagger).
+
+### Plugins de Maven
+1. **maven-compiler-plugin**:
+   - Configurado para usar Lombok como procesador de anotaciones.
+
+2. **spring-boot-maven-plugin**:
+   - Configurado para excluir Lombok en el empaquetado final.
+
+
 
 ## Instrucciones de Instalación y Ejecución
 
@@ -36,8 +59,8 @@ SafeZone es una plataforma móvil y web diseñada para mejorar la seguridad en c
 ### Clonación del Repositorio
 
 ```bash
-git clone https://github.com/N1CKZ3B/SafeZone-Back.git
-cd safezone-backend
+https://github.com/N1CKZ3B/Solver-Back.git
+cd Solver-Back
 ```
 ### Contrucción del Proyecto
 ```bash
@@ -57,26 +80,60 @@ http://localhost:8080
 ```
 
 ### Estructura
-La estructura del proyecto sigue el estándar de Maven, organizando el código fuente en el directorio src/main/java bajo el paquete eci.ieti.safezone, que contiene los módulos controller y exception, con las clases StatusController.java y GlobalExceptionHandler.java, respectivamente. Los recursos del proyecto se ubican en src/main/resources, mientras que las pruebas unitarias están en src/test/java/eci/ieti/demo. Además, el archivo pom.xml gestiona las dependencias y la configuración del proyecto.
-```bash
+Esta estructura corresponde a un proyecto Spring Boot organizado de manera modular. En src/main/java, bajo el paquete eci.ieti.safezone, se encuentra el código fuente, con la clase principal DemoApplication.java como punto de entrada. La carpeta config contiene la configuración de DynamoDB, mientras que controller aloja los controladores que manejan solicitudes HTTP, como ApplicantController.java y UserController.java. Las excepciones personalizadas, como ApplicantException.java, y su manejo global están en exception. Los modelos de datos, como Applicant.java y User.java, se ubican en model, y la lógica de negocio en service, con clases como ApplicantService.java. Las pruebas, en src/test, siguen una estructura similar, con clases como ApplicantControllerTest.java para probar los controladores. Esta organización facilita el desarrollo, pruebas y mantenimiento de la aplicación.
+
+```
+
 src
-├── main
-│   ├── java
-│   │   └── eci
-│   │       └── ieti
-│   │           └── safezone
-│   │               ├── controller
-│   │               │   └── StatusController.java
-│   │               └── exception
-│   │                   └── GlobalExceptionHandler.java
-│   └── resources
-└── test
-    └── java
-        └── eci
-            └── ieti
-                └── demo
-pom.xml
+├───main
+│   ├───java
+│   │   └───eci
+│   │       └───ieti
+│   │           └───safezone
+│   │               │   DemoApplication.java
+│   │               │
+│   │               ├───config
+│   │               │       DynamoDBConfig.java
+│   │               │       DynamoDBConnection.java
+│   │               │
+│   │               ├───controller
+│   │               │       ApplicantController.java
+│   │               │       DynamoDBController.java
+│   │               │       OfferController.java
+│   │               │       StatusController.java
+│   │               │       UserController.java
+│   │               │
+│   │               ├───exception
+│   │               │       ApplicantException.java
+│   │               │       GlobalExceptionHandler.java
+│   │               │       OfferException.java
+│   │               │
+│   │               ├───model
+│   │               │       Applicant.java
+│   │               │       Offer.java
+│   │               │       User.java
+│   │               │
+│   │               └───service
+│   │                       ApplicantService.java
+│   │                       DynamoDBService.java
+│   │                       OfferService.java
+│   │                       UserService.java
+│   │
+│   └───resources
+│           application.properties
+│
+└───test
+     ───java
+        └───eci
+            └───ieti
+                └───safezone
+                     │   DemoApplicationTests.java
+                     │
+                     └───controller
+                                ApplicantControllerTest.java
+                                OfferControllerTest.java
+                                UserControllerTest.java
 ```
 ### Planeación del Proyecto
 La planeación detallada del desarrollo del backend, incluyendo el backlog y las historias de usuario, está disponible en el siguiente enlace:  
-[Planeación del Backend](https://ejemplo.com/planeacion-backend](https://trello.com/invite/b/67a00fc8bcfff22002613396/ATTI91a97041797d4657dfbe6f8f4eafc4c6AB986C2F/safezone-3))
+[Planeación del Backend](https://dev.azure.com/SolverECI/Solver/_workitems/recentlyupdated/)
