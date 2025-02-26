@@ -1,9 +1,8 @@
 package eci.ieti.safezone.controller;
 
-import eci.ieti.safezone.Service.OfferService;
+import eci.ieti.safezone.service.OfferService;
 import eci.ieti.safezone.exception.OfferException;
 import eci.ieti.safezone.model.Offer;
-import eci.ieti.safezone.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
