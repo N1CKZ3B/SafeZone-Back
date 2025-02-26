@@ -1,6 +1,6 @@
 package eci.ieti.safezone.controller;
 
-import eci.ieti.safezone.Service.UserService;
+import eci.ieti.safezone.service.UserService;
 import eci.ieti.safezone.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package eci.ieti.safezone.controller;
 
-import eci.ieti.safezone.Service.DynamoDBService;
+import eci.ieti.safezone.service.DynamoDBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

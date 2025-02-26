@@ -1,4 +1,4 @@
-package eci.ieti.safezone.Service;
+package eci.ieti.safezone.service;
 
 import eci.ieti.safezone.exception.ApplicantException;
 import eci.ieti.safezone.exception.OfferException;

@@ -1,8 +1,7 @@
-package eci.ieti.safezone.Service;
+package eci.ieti.safezone.service;
 
 import eci.ieti.safezone.exception.OfferException;
 import eci.ieti.safezone.model.Offer;
-import eci.ieti.safezone.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
