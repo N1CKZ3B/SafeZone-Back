@@ -1,4 +1,4 @@
-package eci.ieti.safezone;
+package eci.ieti.safezone.config;
 
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
