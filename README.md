@@ -89,7 +89,7 @@ src
 │   ├───java
 │   │   └───eci
 │   │       └───ieti
-│   │           └───safezone
+│   │           └───solver
 │   │               │   DemoApplication.java
 │   │               │
 │   │               ├───config
